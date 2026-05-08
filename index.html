@@ -3,113 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outdoor Comp | Equipamiento de Aventura</title>
+    <title>Outdoor Comp | Expedition Grade</title>
     <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Header / Nav -->
     <header>
         <nav class="navbar">
             <div class="logo">OUTDOOR<span>COMP</span></div>
             <ul class="nav-links">
-                <li><a href="#" class="active">Inicio</a></li>
-                <li><a href="#">Tienda</a></li>
-                <li><a href="#">Rutas</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="#" class="active">Equipamiento</a></li>
+                <li><a href="#">Expediciones</a></li>
+                <li><a href="#">Blog</a></li>
             </ul>
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-shopping-cart"></i>
+            </div>
         </nav>
     </header>
 
-    <!-- Hero Section (Sección Principal) -->
     <section class="hero">
         <div class="hero-content">
-            <span class="badge">TEMPORADA 2024</span>
-            <h1>Explora lo Inexplorado</h1>
-            <p>Viste tu pasión. Equípate al máximo para la montaña.</p>
-            <a href="#catalogo" class="btn-primary">Ver catálogo <i class="fas fa-arrow-right"></i></a>
+            <div class="badge"><i class="fas fa-mountain"></i> EXPEDICIÓN 2026</div>
+            <h1>EQUIPO PARA EL <br><span>CRACK</span> DEL TREKKING</h1>
+            <p>Rendimiento extremo. Calidad garantizada para exploradores profesionales.</p>
+            <div class="hero-btns">
+                <a href="#productos" class="btn-main">Ver catálogo <i class="fas fa-chevron-right"></i></a>
+            </div>
         </div>
     </section>
 
-    <!-- Features Section (Características) -->
-    <section class="features">
-        <div class="feature-item">
-            <div class="stat">50+</div>
-            <p>PRODUCTOS</p>
+    <section class="stats">
+        <div class="stat-card">
+            <h2>20+</h2>
+            <p>CATEGORÍAS</p>
         </div>
-        <div class="feature-item">
-            <div class="stat">100%</div>
-            <p>CALIDAD</p>
+        <div class="stat-card">
+            <h2>100%</h2>
+            <p>RESISTENTE</p>
         </div>
-        <div class="feature-item">
-            <i class="fas fa-truck feature-icon"></i>
-            <p>ENVÍO NACIONAL</p>
+        <div class="stat-card">
+            <i class="fas fa-truck-fast"></i>
+            <p>ENVÍO GLOBAL</p>
         </div>
     </section>
 
-    <!-- Products Section (Catálogo) -->
-    <section id="catalogo" class="products">
-        <div class="section-header">
-            <h2>PRODUCTOS</h2>
-            <p class="product-count">15 productos encontrados</p>
+    <section id="productos" class="catalog">
+        <div class="catalog-header">
+            <div class="title-area">
+                <span>CATÁLOGO</span>
+                <h2>PRODUCTOS</h2>
+            </div>
+            <div class="filters">
+                <button class="f-btn active">Todos</button>
+                <button class="f-btn">Camping</button>
+                <button class="f-btn">Ropa</button>
+                <button class="f-btn">Calzado</button>
+            </div>
         </div>
 
-        <!-- Product Grid -->
-        <div class="product-grid">
-            
+        <div class="grid">
             <!-- Producto 1 -->
-            <div class="product-card">
-                <span class="product-tag">EQUIPO</span>
-                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=400&auto=format&fit=crop" alt="Mochila Pro 45L">
-                <div class="product-info">
-                    <h3>Mochila Pro 45L</h3>
-                    <p class="price">$89.99</p>
-                    <button class="add-to-cart"><i class="fas fa-plus"></i> Agregar al carrito</button>
+            <div class="item">
+                <span class="tag">NUEVO</span>
+                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=400" alt="Mochila">
+                <div class="item-info">
+                    <h3>Mochila Tech 60L</h3>
+                    <p class="price">$120.000</p>
+                    <button class="add-btn"><i class="fas fa-cart-plus"></i> Añadir</button>
                 </div>
             </div>
-
             <!-- Producto 2 -->
-            <div class="product-card">
-                <span class="product-tag">REFUGIO</span>
-                <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=400&auto=format&fit=crop" alt="Carpa 4 Estaciones">
-                <div class="product-info">
-                    <h3>Carpa 4 Estaciones</h3>
-                    <p class="price">$150.00</p>
-                    <button class="add-to-cart"><i class="fas fa-plus"></i> Agregar al carrito</button>
+            <div class="item">
+                <span class="tag">PRO</span>
+                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=400" alt="Botas">
+                <div class="item-info">
+                    <h3>Botas Gore-Tex</h3>
+                    <p class="price">$245.000</p>
+                    <button class="add-btn"><i class="fas fa-cart-plus"></i> Añadir</button>
                 </div>
             </div>
-
-            <!-- Producto 3 -->
-            <div class="product-card">
-                <span class="product-tag">CALZADO</span>
-                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=400&auto=format&fit=crop" alt="Botas Trekking">
-                <div class="product-info">
-                    <h3>Botas de Trekking</h3>
-                    <p class="price">$120.50</p>
-                    <button class="add-to-cart"><i class="fas fa-plus"></i> Agregar al carrito</button>
-                </div>
-            </div>
-
-            <!-- Producto 4 -->
-            <div class="product-card">
-                <span class="product-tag">ACCESORIOS</span>
-                <img src="https://images.unsplash.com/photo-1627814881180-27f69f20c4c4?q=80&w=400&auto=format&fit=crop" alt="Reloj GPS">
-                <div class="product-info">
-                    <h3>Reloj GPS Aventura</h3>
-                    <p class="price">$199.00</p>
-                    <button class="add-to-cart"><i class="fas fa-plus"></i> Agregar al carrito</button>
-                </div>
-            </div>
-            
         </div>
     </section>
-
-    <!-- Footer sutil -->
-    <footer>
-        <p>&copy; 2024 Outdoor Comp - Diseñado para aventureros.</p>
-    </footer>
 
 </body>
 </html>
