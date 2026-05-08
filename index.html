@@ -3,84 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glaxonsport | Tienda Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Special+Elite&display=swap" rel="stylesheet">
-    <style>
-        :root { --green: #39ff14; --dark: #0a0a0a; --gray: #1a1a1a; --text: #e0e0e0; }
-        body { background: var(--dark); color: var(--text); font-family: 'Arial', sans-serif; margin: 0; }
-        .hero { height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2000'); background-size: cover; text-align: center; border-bottom: 3px solid var(--green); }
-        .hero h1 { font-family: 'Staatliches'; font-size: 5rem; color: var(--green); margin: 0; }
-        .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px; max-width: 1200px; margin: auto; }
-        .card { background: var(--gray); border: 1px solid #333; padding: 20px; text-align: center; transition: 0.3s; }
-        .card:hover { border-color: var(--green); transform: translateY(-5px); }
-        .card img { width: 100%; height: 250px; object-fit: cover; margin-bottom: 15px; border-radius: 4px; }
-        .card h3 { font-family: 'Staatliches'; font-size: 1.5rem; letter-spacing: 1px; }
-        .price { color: var(--green); font-weight: bold; font-size: 1.2rem; }
-        .btn { background: var(--green); color: black; border: none; padding: 10px 20px; cursor: pointer; font-family: 'Special Elite'; font-weight: bold; width: 100%; margin-top: 10px; }
-    </style>
+    <title>Outdoor Comp | Equipamiento de Aventura</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Iconos (opcional) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
+    <header>
+        <nav class="navbar">
+            <div class="logo">OUTDOOR <span>COMP</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Tienda</a></li>
+                <li><a href="#">Rutas</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <section class="hero">
-        <h1>GLAXONSPORT</h1>
-        <p style="font-family: 'Special Elite';">SUMINISTROS DE ALTO RENDIMIENTO</p>
+        <div class="hero-content">
+            <h1>Explora lo Inexplorado</h1>
+            <p>El mejor equipo para tus expediciones en la montaña, bosque o desierto.</p>
+            <a href="#" class="btn">Ver Catálogo</a>
+        </div>
     </section>
 
-    <div class="catalog" id="product-list"></div>
+    <section class="products">
+        <h2>Productos Destacados</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="brujula.jpg.jpeg">🎒</div>
+                <h3>Mochila Pro 45L</h3>
+                <p>$89.99</p>
+                <button class="buy-btn">Agregar</button>
+            </div>
+            <div class="product-card">
+                <div class="carpa.jpg.jpeg">⛺</div>
+                <h3>Carpa 4 Estaciones</h3>
+                <p>$150.00</p>
+                <button class="buy-btn">Agregar</button>
+            </div>
+            <div class="product-card">
+                <div class="kitradio.jpg.jpeg">🥾</div>
+                <h3>Botas de Trekking</h3>
+                <p>$120.50</p>
+                <button class="buy-btn">Agregar</button>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        // ============================================================
-        // CONFIGURACIÓN DE TUS PRODUCTOS (ZONA DE CARGA)
-        // ============================================================
-        
-        const products = [
-            { 
-                id: 1, 
-                name: "BALÓN GOLARY PRO", 
-                price: 65000, 
-                // ABAJO: Reemplaza balon1.jpg por el nombre exacto de tu foto
-                img: "balon1.jpg" // <<<<<< SUSTITUYE AQUÍ
-            },
-            { 
-                id: 2, 
-                name: "UNIFORME GLAXON BLANCO", 
-                price: 85000, 
-                // ABAJO: Reemplaza uniforme.jpg por el nombre exacto de tu foto
-                img: "uniforme.jpg" // <<<<<< SUSTITUYE AQUÍ
-            },
-            { 
-                id: 3, 
-                name: "BOTAS DE MONTAÑA", 
-                price: 320000, 
-                // ABAJO: Reemplaza botas.jpg por el nombre exacto de tu foto
-                img: "botas.jpg" // <<<<<< SUSTITUYE AQUÍ
-            },
-            { 
-                id: 4, 
-                name: "MORRAL TÁCTICO", 
-                price: 150000, 
-                // ABAJO: Reemplaza morral.jpg por el nombre exacto de tu foto
-                img: "morral.jpg" // <<<<<< SUSTITUYE AQUÍ
-            }
-        ];
+    <footer>
+        <p>&copy; 2024 Outdoor Comp - Diseñado para aventureros.</p>
+    </footer>
 
-        // ============================================================
-        // NO TOCAR NADA DE AQUÍ ABAJO (LÓGICA DEL SISTEMA)
-        // ============================================================
-
-        function render() {
-            const container = document.getElementById('product-list');
-            container.innerHTML = products.map(p => `
-                <div class="card">
-                    <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300x250?text=FOTO+NO+ENCONTRADA'">
-                    <h3>${p.name}</h3>
-                    <p class="price">$${p.price.toLocaleString()}</p>
-                    <button class="btn">PEDIR AHORA</button>
-                </div>
-            `).join('');
-        }
-
-        render();
-    </script>
 </body>
 </html>
