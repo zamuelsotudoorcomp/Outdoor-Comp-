@@ -2,14 +2,48 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Outdoor Comp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outdoor Comp - Tienda de Aventura</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background-color: #f0f0f0; }
-        h1 { color: #2c3e50; margin-top: 50px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f7f6; }
+        header { background-color: #2d5a27; color: white; padding: 2rem; text-align: center; }
+        .container { padding: 20px; max-width: 1000px; margin: auto; }
+        .hero { background-color: #ffffff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; }
+        .btn { background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .products { display: flex; gap: 20px; margin-top: 30px; justify-content: center; flex-wrap: wrap; }
+        .card { background: white; padding: 15px; border-radius: 8px; width: 200px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
     </style>
 </head>
 <body>
-    <h1>Bienvenido a Outdoor Comp</h1>
-    <p>Estamos construyendo algo increíble.</p>
+
+<header>
+    <h1>OUTDOOR COMP</h1>
+    <p>Equipamiento para Camping, Senderismo y Rivering</p>
+</header>
+
+<div class="container">
+    <div class="hero">
+        <h2>Prepárate para la próxima aventura</h2>
+        <p>Explora nuestro catálogo de productos seleccionados para los amantes de la naturaleza.</p>
+        <br>
+        <a href="#" class="btn">Ver Catálogo</a>
+    </div>
+
+    <div class="products">
+        <div class="card">
+            <h3>Carpas</h3>
+            <p>Resistentes a todo clima.</p>
+        </div>
+        <div class="card">
+            <h3>Morrales</h3>
+            <p>Ergonómicos y ligeros.</p>
+        </div>
+        <div class="card">
+            <h3>Botas</h3>
+            <p>Tracción máxima en montaña.</p>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
