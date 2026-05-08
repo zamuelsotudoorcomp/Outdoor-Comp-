@@ -3,237 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outdoor Comp - Expedición y Aventura</title>
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Staatliches&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <title>Outdoor Comp - Archivos de Expedición</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Staatliches&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-map: #2b2319; /* Fondo oscuro tierra */
-            --accent-orange: #d35400; /* Naranja quemado tipo aventura */
-            --paper-color: #f2e3c9; /* Color papel viejo para textos */
-            --card-bg: rgba(45, 38, 30, 0.9); /* Fondo tarjetas cuero oscuro */
+            --bg-dark: #1a1612;
+            --accent-orange: #e67e22;
+            --paper: #d2b48c; /* Tan/Piel para el look de mapa */
+            --ink: #2c251e;
             --vintage-font: 'Special Elite', cursive;
-            --header-font: 'Staatliches', cursive;
+        }
+
+        /* FILTRO DE PELÍCULA VIEJA */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
         }
 
         body {
             font-family: 'EB Garamond', serif;
             margin: 0;
-            background-color: var(--bg-map);
-            color: var(--paper-color);
-            /* FONDO: Mapa estilo Indiana Jones (Textura de mapa antiguo) */
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                              url('https://www.transparenttextures.com/patterns/old-map.png');
+            background-color: var(--bg-dark);
+            color: var(--paper);
+            background-image: 
+                linear-gradient(rgba(26, 22, 18, 0.85), rgba(26, 22, 18, 0.85)),
+                url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=2000'); /* Fondo de mapa/bosque */
             background-attachment: fixed;
+            background-size: cover;
         }
 
-        /* --- EFECTO DESGASTADO EN TEXTOS --- */
-        .weathered {
-            font-family: var(--vintage-font);
-            text-transform: uppercase;
-            color: var(--accent-orange);
-            /* Efecto de desgaste sutil con sombras */
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.5), -1px -1px 0px rgba(255,255,255,0.1);
-            letter-spacing: 2px;
-        }
-
-        /* --- SECCIÓN HÉROE --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* --- CABECERA ESTILO PERIÓDICO VIEJO --- */
+        header {
+            border-bottom: 3px solid var(--accent-orange);
+            padding: 20px;
             text-align: center;
-            border-bottom: 5px double var(--accent-orange);
+            background: rgba(0,0,0,0.5);
         }
 
-        .hero h1 {
-            font-family: var(--header-font);
-            font-size: 6rem;
+        .logo-area h1 {
+            font-family: 'Staatliches', cursive;
+            font-size: 4.5rem;
             color: var(--accent-orange);
             margin: 0;
-            line-height: 0.8;
-            filter: drop-shadow(4px 4px 0px #000);
+            letter-spacing: 5px;
+            text-shadow: 3px 3px 0px #000;
         }
 
-        .hero p {
+        /* --- TARJETAS TIPO "EXPEDIENTE" --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
             font-family: var(--vintage-font);
-            font-size: 1.5rem;
-            max-width: 700px;
-            margin-top: 20px;
-        }
-
-        .btn-expedition {
-            margin-top: 30px;
-            background-color: var(--accent-orange);
-            color: #000;
-            padding: 18px 45px;
-            font-family: var(--header-font);
-            font-size: 1.5rem;
-            text-decoration: none;
-            border-radius: 5px;
-            box-shadow: 5px 5px 0px #000;
-            transition: 0.2s;
-        }
-
-        .btn-expedition:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 7px 7px 0px #000;
-        }
-
-        /* --- SECCIÓN CATÁLOGO --- */
-        .main-content { padding: 50px 20px; max-width: 1200px; margin: auto; }
-
-        .promo-banner {
-            background-image: url('https://www.transparenttextures.com/patterns/leather.png');
-            background-color: #3d2b1f;
-            border: 2px solid var(--accent-orange);
-            padding: 40px;
-            border-radius: 4px;
+            text-align: center;
+            border-bottom: 1px dashed var(--accent-orange);
             margin-bottom: 50px;
-            position: relative;
+            padding-bottom: 10px;
         }
 
-        .promo-banner h2 {
-            font-family: var(--header-font);
-            font-size: 3rem;
-            color: var(--paper-color);
-        }
-
-        /* --- TARJETAS DE PRODUCTO (ESTILO EXPEDICIÓN) --- */
-        .product-grid {
+        .grid-expedientes {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .product-card {
-            background-color: var(--card-bg);
-            border: 1px solid #4a3c2c;
-            padding: 20px;
+        .expediente-card {
+            background: #251f1a;
+            border: 1px solid #3d342b;
+            padding: 0;
             position: relative;
-            transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.6);
         }
 
-        .product-card:hover {
+        .expediente-card:hover {
+            transform: rotate(-1deg) scale(1.02);
             border-color: var(--accent-orange);
-            transform: scale(1.02);
         }
 
-        .product-card::before { /* Sello de cera o estampa */
-            content: 'TOP SECRET';
-            position: absolute;
-            top: 10px; right: 10px;
-            border: 2px solid #5e1c1c;
-            color: #5e1c1c;
+        .card-header {
+            background: var(--accent-orange);
+            color: #000;
+            padding: 5px 15px;
             font-family: var(--vintage-font);
-            font-size: 0.6rem;
-            padding: 2px 5px;
-            transform: rotate(15deg);
-            opacity: 0.5;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .product-image-container {
-            width: 100%; height: 200px;
-            background-color: rgba(0,0,0,0.3);
-            margin-bottom: 20px;
-            display: flex; justify-content: center; align-items: center;
+        .card-image {
+            width: 100%;
+            height: 250px;
+            background-color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #3d342b;
         }
 
-        .product-info h4 {
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body h3 {
             font-family: var(--vintage-font);
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
             color: var(--accent-orange);
-            font-size: 1.2rem;
-            margin: 10px 0;
         }
 
-        .product-price {
-            font-family: var(--header-font);
+        .card-body p {
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .price-tag {
+            font-family: 'Staatliches', cursive;
             font-size: 2rem;
-            color: var(--paper-color);
+            display: block;
+            margin: 15px 0;
+            color: #fff;
         }
 
-        .btn-add-cart {
+        .btn-order {
+            display: block;
             width: 100%;
             padding: 12px;
             background: transparent;
-            border: 1px solid var(--accent-orange);
+            border: 2px solid var(--accent-orange);
             color: var(--accent-orange);
             font-family: var(--vintage-font);
+            text-transform: uppercase;
             cursor: pointer;
-            margin-top: 15px;
+            font-weight: bold;
         }
 
-        .btn-add-cart:hover {
+        .btn-order:hover {
             background: var(--accent-orange);
             color: #000;
         }
 
-        /* Chat Flotante: Brújula */
-        .floating-chat {
-            position: fixed; bottom: 30px; right: 30px;
-            background-color: var(--accent-orange);
-            width: 60px; height: 60px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 2rem; color: #000; box-shadow: 0 0 20px rgba(211, 84, 0, 0.5);
+        /* --- SELLO DE GOMA --- */
+        .stamp {
+            position: absolute;
+            bottom: 80px;
+            right: 10px;
+            border: 4px solid #7a2222;
+            color: #7a2222;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-family: var(--vintage-font);
+            font-weight: bold;
+            opacity: 0.4;
+            transform: rotate(-20deg);
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+
+        /* BOTÓN FLOTANTE (BRÚJULA) */
+        .compass-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, #f39c12, #d35400);
+            border-radius: 50%;
+            border: 4px solid #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            z-index: 1000;
         }
 
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="weathered">Expedición Confirmada</div>
-        <h1>OUTDOOR COMP</h1>
-        <p>EQUIPAMIENTO DE SUPERVIVENCIA PARA EL SIGLO XXI CON EL ESPÍRITU DE 1930.</p>
-        <a href="#catalogo" class="btn-expedition">EXPLORAR ARCHIVOS</a>
-    </section>
-
-    <main id="catalogo" class="main-content">
-        
-        <div class="promo-banner">
-            <h2>SUMINISTROS <span>DE CAMPO</span></h2>
-            <p class="weathered" style="color: var(--paper-color);">Raciones, herramientas y refugio. Todo aprobado por la oficina de exploración.</p>
+    <header>
+        <div class="logo-area">
+            <p style="font-family: var(--vintage-font); margin-bottom: 5px;">EST. 1926 — SUMINISTROS OFICIALES</p>
+            <h1>OUTDOOR COMP</h1>
+            <p class="weathered" style="font-style: italic;">"La aventura es solo un mal planeamiento... nosotros planeamos por ti."</p>
         </div>
+    </header>
 
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://via.placeholder.com/200x150/2b2319/d35400?text=Morral+Cuero" alt="Morral" style="max-width: 80%;">
-                </div>
-                <div class="product-info">
-                    <h4>MORRAL DE LONA ENCEREADA</h4>
-                    <p class="product-price">$450.000</p>
-                    <button class="btn-add-cart">ADQUIRIR</button>
-                </div>
-            </div>
+    <div class="container">
+        <h2 class="section-title">MANIFIESTO DE EQUIPAMIENTO</h2>
 
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://via.placeholder.com/200x150/2b2319/d35400?text=Brújula" alt="Brújula" style="max-width: 80%;">
+        <div class="grid-expedientes">
+            
+            <div class="expediente-card">
+                <div class="card-header">
+                    <span>REF: EXP-001</span>
+                    <span>CLASIFICADO</span>
                 </div>
-                <div class="product-info">
-                    <h4>BRÚJULA DE LATÓN VINTAGE</h4>
-                    <p class="product-price">$120.000</p>
-                    <button class="btn-add-cart">ADQUIRIR</button>
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/250x200/1a1612/e67e22?text=CARPA+ASALTO" alt="Carpa">
                 </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://via.placeholder.com/200x150/2b2319/d35400?text=Cantimplora" alt="Cantimplora" style="max-width: 80%;">
-                </div>
-                <div class="product-info">
-                    <h4>CANTIMPLORA DE ACERO FORJADO</h4>
-                    <p class="product-price">$85.000</p>
-                    <button class="btn-add-cart">ADQUIRIR</button>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <div class="floating-chat">🧭</div>
-
-</body>
-</html>
+                <div class="card-body">
+                    <h3>REFUGIO DE MONTAÑA</h3>
+                    <p>Carpa reforzada para vientos de los
