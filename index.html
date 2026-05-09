@@ -1,104 +1,74 @@
-<section id="productos" class="catalog">
-        <div class="catalog-header">
-            <div class="title-area">
-                <span>EXPEDITION GRADE</span>
-                <h2>CATÁLOGO DE EQUIPO</h2>
-            </div>
-            <div class="filters">
-                <button class="f-btn active">Todos</button>
-                <button class="f-btn">Técnico</button>
-                <button class="f-btn">Supervivencia</button>
-            </div>
-        </div>
+<script>
 
-        <div class="grid">
-            <!-- BOTAS (4 Unidades) -->
-            <div class="item">
-                <span class="tag">CALZADO</span>
-                <img src="https://images.unsplash.com/photo-1520639889313-7272175b1c39?q=80&w=400&auto=format&fit=crop" alt="Botas">
-                <div class="item-info"><h3>Botas Trekking Pro</h3><p class="price">$245.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">CALZADO</span>
-                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=400&auto=format&fit=crop" alt="Botas">
-                <div class="item-info"><h3>Botas Gore-Tex XT</h3><p class="price">$280.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">CALZADO</span>
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=400&auto=format&fit=crop" alt="Botas">
-                <div class="item-info"><h3>Botas Ligeras Trail</h3><p class="price">$190.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">CALZADO</span>
-                <img src="https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?q=80&w=400&auto=format&fit=crop" alt="Botas">
-                <div class="item-info"><h3>Botas Nieve Extreme</h3><p class="price">$320.000</p><button class="add-btn">Añadir</button></div>
-            </div>
+/* =========================
+   FILTROS
+========================= */
 
-            <!-- BINOCULARES (4 Unidades) -->
-            <div class="item">
-                <span class="tag">ÓPTICA</span>
-                <img src="https://images.unsplash.com/photo-1590520803520-96696b9981f7?q=80&w=400&auto=format&fit=crop" alt="Binoculares">
-                <div class="item-info"><h3>Binoculares HD 10x42</h3><p class="price">$155.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">ÓPTICA</span>
-                <img src="https://images.unsplash.com/photo-1511993226957-cd166aba52d8?q=80&w=400&auto=format&fit=crop" alt="Binoculares">
-                <div class="item-info"><h3>Visión Nocturna G2</h3><p class="price">$450.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">ÓPTICA</span>
-                <img src="https://images.unsplash.com/photo-1469032040523-26796129994c?q=80&w=400&auto=format&fit=crop" alt="Binoculares">
-                <div class="item-info"><h3>Monocular Compacto</h3><p class="price">$85.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">ÓPTICA</span>
-                <img src="https://images.unsplash.com/photo-1624362706341-26f634591f9b?q=80&w=400&auto=format&fit=crop" alt="Binoculares">
-                <div class="item-info"><h3>Telescopio Terrestre</h3><p class="price">$520.000</p><button class="add-btn">Añadir</button></div>
-            </div>
+const filterButtons = document.querySelectorAll(".f-btn");
+const items = document.querySelectorAll(".item");
 
-            <!-- NAVAJAS / HERRAMIENTAS (4 Unidades) -->
-            <div class="item">
-                <span class="tag">HERRAMIENTAS</span>
-                <img src="https://images.unsplash.com/photo-1594145070104-51785532298c?q=80&w=400&auto=format&fit=crop" alt="Navaja">
-                <div class="item-info"><h3>Navaja Multi-Tool</h3><p class="price">$95.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">HERRAMIENTAS</span>
-                <img src="https://images.unsplash.com/photo-1620311545450-48206d203565?q=80&w=400&auto=format&fit=crop" alt="Navaja">
-                <div class="item-info"><h3>Cuchillo de Caza</h3><p class="price">$130.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">HERRAMIENTAS</span>
-                <img src="https://images.unsplash.com/photo-1614064548237-096f735f344f?q=80&w=400&auto=format&fit=crop" alt="Navaja">
-                <div class="item-info"><h3>Hacha de Mano</h3><p class="price">$110.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">HERRAMIENTAS</span>
-                <img src="https://images.unsplash.com/photo-1518131333796-015886650993?q=80&w=400&auto=format&fit=crop" alt="Navaja">
-                <div class="item-info"><h3>Pala Plegable</h3><p class="price">$75.000</p><button class="add-btn">Añadir</button></div>
-            </div>
+filterButtons.forEach(button => {
 
-            <!-- RADIOS / ELECTRÓNICA (4 Unidades) -->
-            <div class="item">
-                <span class="tag">RADIO</span>
-                <img src="https://plus.unsplash.com/premium_photo-1678120005708-3605809df658?q=80&w=400&auto=format&fit=crop" alt="Radio">
-                <div class="item-info"><h3>Radio Walkie Talkie 5km</h3><p class="price">$180.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">RADIO</span>
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400&auto=format&fit=crop" alt="Radio">
-                <div class="item-info"><h3>Radio Satelital Pro</h3><p class="price">$600.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">RADIO</span>
-                <img src="https://images.unsplash.com/photo-1563770660941-20978e87081b?q=80&w=400&auto=format&fit=crop" alt="Radio">
-                <div class="item-info"><h3>Batería Solar Portátil</h3><p class="price">$120.000</p><button class="add-btn">Añadir</button></div>
-            </div>
-            <div class="item">
-                <span class="tag">RADIO</span>
-                <img src="https://images.unsplash.com/photo-1508182314990-29c41764c1bd?q=80&w=400&auto=format&fit=crop" alt="Radio">
-                <div class="item-info"><h3>Linterna Cabeza LED</h3><p class="price">$45.000</p><button class="add-btn">Añadir</button></div>
-            </div>
+    button.addEventListener("click", () => {
 
-        </div>
-    </section>
+        document.querySelector(".f-btn.active")
+        .classList.remove("active");
+
+        button.classList.add("active");
+
+        const filter = button.dataset.filter;
+
+        items.forEach(item => {
+
+            if(filter === "all"){
+                item.style.display = "block";
+            }
+            else{
+
+                if(item.dataset.category === filter){
+                    item.style.display = "block";
+                }else{
+                    item.style.display = "none";
+                }
+
+            }
+
+        });
+
+    });
+
+});
+
+/* =========================
+   BOTÓN AÑADIR
+========================= */
+
+const addButtons = document.querySelectorAll(".add-btn");
+
+let cartCount = 0;
+
+addButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        if(!button.classList.contains("added")){
+
+            cartCount++;
+
+            button.classList.add("added");
+            button.innerText = "Añadido ✓";
+
+            setTimeout(() => {
+                button.classList.remove("added");
+                button.innerText = "Añadir";
+            },2000);
+
+            console.log("Productos en carrito:", cartCount);
+
+        }
+
+    });
+
+});
+
+</script>
