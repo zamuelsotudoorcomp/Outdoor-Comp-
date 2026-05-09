@@ -5,22 +5,156 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Outdoor Expedition</title>
+<title>Outdoor Comp</title>
 
 <style>
 
-body{
+/* =========================
+   RESET
+========================= */
+
+*{
     margin:0;
-    background:#0b0f0d;
-    font-family:Arial, sans-serif;
-    color:white;
+    padding:0;
+    box-sizing:border-box;
 }
 
-/* SECCIÓN */
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#0a0f0d;
+    color:white;
+    font-family:Arial, sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    height:100vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* IMAGEN FONDO */
+
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.75)),
+    url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+
+    transform:scale(1.05);
+}
+
+/* CONTENIDO */
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:900px;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:95px;
+    font-weight:900;
+    letter-spacing:2px;
+    margin-bottom:20px;
+    text-transform:uppercase;
+}
+
+.hero p{
+    font-size:24px;
+    color:#d1d5db;
+    margin-bottom:40px;
+}
+
+.hero button{
+    padding:18px 38px;
+    border:none;
+    border-radius:50px;
+
+    background:linear-gradient(135deg,#d4af37,#f5d76e);
+
+    color:black;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.hero button:hover{
+    transform:scale(1.05);
+}
+
+/* =========================
+   SECOND SECTION
+========================= */
+
+.adventure-banner{
+    padding:120px 8%;
+    position:relative;
+}
+
+.banner-box{
+    height:500px;
+    border-radius:35px;
+
+    background:
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.65)),
+    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    box-shadow:0 25px 45px rgba(0,0,0,.45);
+}
+
+.banner-content{
+    padding:40px;
+}
+
+.banner-content h2{
+    font-size:58px;
+    margin-bottom:20px;
+}
+
+.banner-content p{
+    color:#d1d5db;
+    font-size:20px;
+    line-height:1.7;
+    max-width:800px;
+}
+
+/* =========================
+   CATALOGO
+========================= */
 
 #productos{
-    padding:90px 6%;
-    position:relative;
+    padding:100px 6%;
 }
 
 /* HEADER */
@@ -44,16 +178,15 @@ body{
 .catalog-header h2{
     font-size:52px;
     margin-top:12px;
-    line-height:1.1;
 }
 
 .catalog-header p{
     color:#9ca3af;
     max-width:500px;
-    line-height:1.6;
+    margin-top:10px;
 }
 
-/* BOTONES */
+/* FILTROS */
 
 .filters{
     display:flex;
@@ -65,7 +198,7 @@ body{
     padding:14px 24px;
     border:none;
     border-radius:40px;
-    background:#141917;
+    background:#161b18;
     color:white;
     cursor:pointer;
     transition:.3s;
@@ -81,24 +214,25 @@ body{
 
 #product-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:32px;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:35px;
 }
 
-/* CARD */
+/* PRODUCT CARD */
 
 .product-card{
-    background:#161b18;
-    border-radius:28px;
+    background:#141917;
+    border-radius:30px;
     overflow:hidden;
-    transition:.4s ease;
+    transition:.45s ease;
     position:relative;
+
     border:1px solid rgba(255,255,255,.05);
 }
 
 .product-card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 25px 40px rgba(0,0,0,.4);
+    transform:translateY(-12px);
+    box-shadow:0 25px 45px rgba(0,0,0,.45);
 }
 
 .product-card img{
@@ -118,22 +252,28 @@ body{
     position:absolute;
     top:18px;
     left:18px;
+
     background:rgba(0,0,0,.65);
+
     color:#d4af37;
+
     padding:8px 14px;
+
     border-radius:30px;
+
     font-size:12px;
+
     font-weight:bold;
 }
 
 /* INFO */
 
 .product-info{
-    padding:24px;
+    padding:28px;
 }
 
 .product-info h3{
-    font-size:28px;
+    font-size:30px;
     margin-bottom:10px;
 }
 
@@ -144,8 +284,8 @@ body{
 
 .price{
     display:block;
-    margin:20px 0;
-    font-size:28px;
+    margin:24px 0;
+    font-size:30px;
     color:#d4af37;
     font-weight:bold;
 }
@@ -154,10 +294,12 @@ body{
 
 .add-btn{
     width:100%;
-    padding:16px;
+    padding:17px;
     border:none;
     border-radius:16px;
+
     background:linear-gradient(135deg,#d4af37,#f5d76e);
+
     color:black;
     font-weight:bold;
     font-size:15px;
@@ -169,27 +311,96 @@ body{
     transform:scale(1.03);
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:58px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+    .banner-content h2{
+        font-size:38px;
+    }
+
+    .catalog-header h2{
+        font-size:40px;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Outdoor Comp</h1>
+
+        <p>Where’s your next adventure?</p>
+
+        <button onclick="scrollToCatalog()">
+            Explorar equipo
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     BANNER
+========================= -->
+
+<section class="adventure-banner">
+
+    <div class="banner-box">
+
+        <div class="banner-content">
+
+            <h2>Conquista nuevos caminos</h2>
+
+            <p>
+                Desde montañas extremas hasta expediciones outdoor,
+                encuentra el equipo ideal para vivir experiencias reales.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     CATALOGO
+========================= -->
 
 <section id="productos">
 
     <div class="catalog-header">
 
         <div>
-            <span>EXPEDITION SERIES</span>
 
-            <h2>
-                EQUIPO PARA <br>
-                AVENTURAS REALES
-            </h2>
+            <span>OUTDOOR SERIES</span>
+
+            <h2>Catálogo de aventura</h2>
 
             <p>
-                Equipamiento premium para exploradores,
-                campistas y aventureros outdoor.
+                Equipo premium diseñado para exploradores modernos.
             </p>
+
         </div>
 
         <div class="filters">
@@ -214,6 +425,8 @@ body{
 
     </div>
 
+    <!-- PRODUCTOS -->
+
     <div id="product-grid">
 
         <!-- PRODUCTO -->
@@ -229,7 +442,7 @@ body{
                 <h3>Botas Trekking Pro</h3>
 
                 <p>
-                    Máxima resistencia para rutas extremas.
+                    Resistentes para montaña y senderismo extremo.
                 </p>
 
                 <span class="price">$245.000</span>
@@ -255,7 +468,7 @@ body{
                 <h3>Navaja Multi-Tool</h3>
 
                 <p>
-                    Herramienta táctica compacta outdoor.
+                    Herramienta táctica para camping y emergencias.
                 </p>
 
                 <span class="price">$95.000</span>
@@ -281,7 +494,7 @@ body{
                 <h3>Radio Outdoor X</h3>
 
                 <p>
-                    Comunicación de largo alcance.
+                    Comunicación de largo alcance para expediciones.
                 </p>
 
                 <span class="price">$180.000</span>
@@ -300,7 +513,22 @@ body{
 
 <script>
 
-/* BOTONES */
+/* =========================
+   SCROLL HERO
+========================= */
+
+function scrollToCatalog(){
+
+    document.getElementById("productos")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+/* =========================
+   BOTONES PRODUCTOS
+========================= */
 
 const addBtns = document.querySelectorAll(".add-btn");
 
@@ -325,7 +553,9 @@ addBtns.forEach(btn => {
 
 });
 
-/* FILTROS */
+/* =========================
+   FILTROS
+========================= */
 
 const filterBtns = document.querySelectorAll(".filter-btn");
 const products = document.querySelectorAll(".product-card");
