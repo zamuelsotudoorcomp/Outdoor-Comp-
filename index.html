@@ -1,606 +1,570 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Outdoor Comp</title>
-
+<title>Outdoor Expedition</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  *{margin:0;padding:0;box-sizing:border-box}
 
-/* =========================
-   RESET
-========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:#0a0f0d;
-    color:white;
-    font-family:Arial, sans-serif;
+  body{
+    background:#080c0a;
+    font-family:'DM Sans',sans-serif;
+    color:#f0ece0;
+    min-height:100vh;
     overflow-x:hidden;
-}
+  }
 
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    height:100vh;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    overflow:hidden;
-}
-
-/* IMAGEN FONDO */
-
-.hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
+  /* ATMOSPHERIC BACKGROUND */
+  .bg-layer{
+    position:fixed;top:0;left:0;width:100%;height:100%;
     background:
-    linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.75)),
-    url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');
+      radial-gradient(ellipse 80% 60% at 20% 0%, rgba(180,140,30,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 85% 100%, rgba(60,100,60,0.15) 0%, transparent 50%),
+      #080c0a;
+    z-index:0;pointer-events:none;
+  }
 
-    background-size:cover;
-    background-position:center;
+  /* NOISE TEXTURE OVERLAY */
+  .noise{
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity:.5;z-index:1;pointer-events:none;
+  }
 
-    transform:scale(1.05);
-}
+  section#store{
+    position:relative;z-index:2;
+    padding:80px 5% 100px;
+    max-width:1400px;margin:0 auto;
+  }
 
-/* CONTENIDO */
+  /* HEADER */
+  .store-header{
+    display:grid;grid-template-columns:1fr auto;
+    align-items:end;gap:40px;
+    margin-bottom:80px;
+  }
 
-.hero-content{
-    position:relative;
-    z-index:2;
-    max-width:900px;
-    padding:20px;
-}
+  .eyebrow{
+    display:flex;align-items:center;gap:12px;
+    margin-bottom:20px;
+  }
 
-.hero h1{
-    font-size:95px;
-    font-weight:900;
+  .eyebrow-line{
+    width:40px;height:1px;background:#c9a227;
+  }
+
+  .eyebrow-text{
+    font-size:11px;letter-spacing:5px;color:#c9a227;
+    font-weight:500;text-transform:uppercase;
+  }
+
+  .main-title{
+    font-family:'Bebas Neue',cursive;
+    font-size:clamp(60px,8vw,110px);
+    line-height:.92;
     letter-spacing:2px;
-    margin-bottom:20px;
-    text-transform:uppercase;
-}
+    color:#f0ece0;
+  }
 
-.hero p{
-    font-size:24px;
-    color:#d1d5db;
-    margin-bottom:40px;
-}
+  .main-title em{
+    font-style:normal;
+    -webkit-text-stroke:1px rgba(201,162,39,0.6);
+    color:transparent;
+  }
 
-.hero button{
-    padding:18px 38px;
-    border:none;
-    border-radius:50px;
-
-    background:linear-gradient(135deg,#d4af37,#f5d76e);
-
-    color:black;
-    font-weight:bold;
-    font-size:16px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.hero button:hover{
-    transform:scale(1.05);
-}
-
-/* =========================
-   SECOND SECTION
-========================= */
-
-.adventure-banner{
-    padding:120px 8%;
-    position:relative;
-}
-
-.banner-box{
-    height:500px;
-    border-radius:35px;
-
-    background:
-    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.65)),
-    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop');
-
-    background-size:cover;
-    background-position:center;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    overflow:hidden;
-
-    box-shadow:0 25px 45px rgba(0,0,0,.45);
-}
-
-.banner-content{
-    padding:40px;
-}
-
-.banner-content h2{
-    font-size:58px;
-    margin-bottom:20px;
-}
-
-.banner-content p{
-    color:#d1d5db;
-    font-size:20px;
-    line-height:1.7;
-    max-width:800px;
-}
-
-/* =========================
-   CATALOGO
-========================= */
-
-#productos{
-    padding:100px 6%;
-}
-
-/* HEADER */
-
-.catalog-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:20px;
-    margin-bottom:60px;
-}
-
-.catalog-header span{
-    color:#d4af37;
-    letter-spacing:4px;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.catalog-header h2{
-    font-size:52px;
-    margin-top:12px;
-}
-
-.catalog-header p{
-    color:#9ca3af;
-    max-width:500px;
-    margin-top:10px;
-}
-
-/* FILTROS */
-
-.filters{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-}
-
-.filter-btn{
-    padding:14px 24px;
-    border:none;
-    border-radius:40px;
-    background:#161b18;
-    color:white;
-    cursor:pointer;
-    transition:.3s;
-    font-weight:bold;
-}
-
-.filter-btn.active{
-    background:linear-gradient(135deg,#d4af37,#f5d76e);
-    color:black;
-}
-
-/* GRID */
-
-#product-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:35px;
-}
-
-/* PRODUCT CARD */
-
-.product-card{
-    background:#141917;
-    border-radius:30px;
-    overflow:hidden;
-    transition:.45s ease;
-    position:relative;
-
-    border:1px solid rgba(255,255,255,.05);
-}
-
-.product-card:hover{
-    transform:translateY(-12px);
-    box-shadow:0 25px 45px rgba(0,0,0,.45);
-}
-
-.product-card img{
-    width:100%;
-    height:320px;
-    object-fit:cover;
-    transition:.5s;
-}
-
-.product-card:hover img{
-    transform:scale(1.08);
-}
-
-/* TAG */
-
-.tag{
-    position:absolute;
-    top:18px;
-    left:18px;
-
-    background:rgba(0,0,0,.65);
-
-    color:#d4af37;
-
-    padding:8px 14px;
-
-    border-radius:30px;
-
-    font-size:12px;
-
-    font-weight:bold;
-}
-
-/* INFO */
-
-.product-info{
-    padding:28px;
-}
-
-.product-info h3{
-    font-size:30px;
-    margin-bottom:10px;
-}
-
-.product-info p{
-    color:#9ca3af;
-    line-height:1.6;
-}
-
-.price{
-    display:block;
-    margin:24px 0;
-    font-size:30px;
-    color:#d4af37;
-    font-weight:bold;
-}
-
-/* BOTÓN */
-
-.add-btn{
-    width:100%;
-    padding:17px;
-    border:none;
-    border-radius:16px;
-
-    background:linear-gradient(135deg,#d4af37,#f5d76e);
-
-    color:black;
-    font-weight:bold;
+  .subtitle{
+    margin-top:24px;
     font-size:15px;
+    color:rgba(240,236,224,0.45);
+    line-height:1.7;
+    max-width:420px;
+  }
+
+  /* FILTERS */
+  .filter-panel{
+    display:flex;flex-direction:column;align-items:flex-end;gap:10px;
+    min-width:220px;
+  }
+
+  .filter-label{
+    font-size:10px;letter-spacing:3px;color:rgba(240,236,224,0.3);
+    text-transform:uppercase;
+  }
+
+  .filters{
+    display:flex;flex-direction:column;gap:6px;
+    width:100%;
+  }
+
+  .filter-btn{
+    padding:11px 20px;
+    background:transparent;
+    border:0.5px solid rgba(240,236,224,0.12);
+    border-radius:4px;
+    color:rgba(240,236,224,0.45);
     cursor:pointer;
-    transition:.3s;
-}
+    font-family:'DM Sans',sans-serif;
+    font-size:13px;
+    font-weight:400;
+    letter-spacing:1px;
+    text-align:left;
+    transition:all .25s;
+    display:flex;align-items:center;gap:10px;
+  }
 
-.add-btn:hover{
-    transform:scale(1.03);
-}
+  .filter-btn:hover{
+    border-color:rgba(201,162,39,0.4);
+    color:rgba(240,236,224,0.8);
+  }
 
-/* =========================
-   RESPONSIVE
-========================= */
+  .filter-btn.active{
+    background:rgba(201,162,39,0.1);
+    border-color:#c9a227;
+    color:#c9a227;
+  }
 
-@media(max-width:768px){
+  .filter-dot{
+    width:5px;height:5px;border-radius:50%;
+    background:currentColor;opacity:.6;
+  }
 
-    .hero h1{
-        font-size:58px;
-    }
+  /* GRID */
+  #product-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+  }
 
-    .hero p{
-        font-size:18px;
-    }
+  @media(max-width:900px){
+    #product-grid{grid-template-columns:repeat(2,1fr);}
+    .store-header{grid-template-columns:1fr;}
+    .filter-panel{align-items:flex-start;flex-direction:row;flex-wrap:wrap;}
+    .filters{flex-direction:row;}
+  }
 
-    .banner-content h2{
-        font-size:38px;
-    }
+  @media(max-width:600px){
+    #product-grid{grid-template-columns:1fr;}
+  }
 
-    .catalog-header h2{
-        font-size:40px;
-    }
+  /* PRODUCT CARD */
+  .product-card{
+    position:relative;overflow:hidden;
+    aspect-ratio:3/4;
+    cursor:pointer;
+    background:#0e1410;
+    transition:all .5s cubic-bezier(.25,.46,.45,.94);
+  }
 
-}
+  .product-card.hidden{
+    display:none;
+  }
 
+  .card-img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transition:transform .8s cubic-bezier(.25,.46,.45,.94), filter .5s;
+    filter:brightness(.65) saturate(.8);
+  }
+
+  .product-card:hover .card-img{
+    transform:scale(1.08);
+    filter:brightness(.75) saturate(.9);
+  }
+
+  /* CARD OVERLAY */
+  .card-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(
+      to top,
+      rgba(8,12,10,.95) 0%,
+      rgba(8,12,10,.5) 40%,
+      rgba(8,12,10,.1) 70%,
+      transparent 100%
+    );
+    transition:.4s;
+  }
+
+  .product-card:hover .card-overlay{
+    background:linear-gradient(
+      to top,
+      rgba(8,12,10,.98) 0%,
+      rgba(8,12,10,.65) 50%,
+      rgba(8,12,10,.2) 80%,
+      transparent 100%
+    );
+  }
+
+  /* CATEGORY TAG */
+  .cat-tag{
+    position:absolute;top:20px;left:20px;
+    font-size:9px;letter-spacing:3px;
+    color:#c9a227;font-weight:500;
+    text-transform:uppercase;
+    display:flex;align-items:center;gap:8px;
+  }
+
+  .cat-tag::before{
+    content:'';display:block;
+    width:20px;height:1px;background:#c9a227;
+  }
+
+  /* CARD CONTENT */
+  .card-content{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:28px 24px;
+    transform:translateY(60px);
+    transition:transform .4s cubic-bezier(.25,.46,.45,.94);
+  }
+
+  .product-card:hover .card-content{
+    transform:translateY(0);
+  }
+
+  .card-name{
+    font-family:'Bebas Neue',cursive;
+    font-size:36px;letter-spacing:1px;
+    line-height:1;color:#f0ece0;
+    margin-bottom:8px;
+  }
+
+  .card-desc{
+    font-size:13px;color:rgba(240,236,224,0.5);
+    line-height:1.5;margin-bottom:20px;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .3s .1s, transform .3s .1s;
+  }
+
+  .product-card:hover .card-desc{
+    opacity:1;transform:translateY(0);
+  }
+
+  /* BOTTOM ROW */
+  .card-bottom{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;
+  }
+
+  .card-price{
+    font-family:'Bebas Neue',cursive;
+    font-size:28px;letter-spacing:1px;
+    color:#c9a227;
+  }
+
+  /* ADD BUTTON */
+  .add-btn{
+    flex:1;
+    padding:12px 16px;
+    background:#c9a227;
+    border:none;
+    border-radius:3px;
+    color:#080c0a;
+    font-family:'DM Sans',sans-serif;
+    font-size:12px;font-weight:500;
+    letter-spacing:2px;text-transform:uppercase;
+    cursor:pointer;
+    transition:all .25s;
+    position:relative;overflow:hidden;
+  }
+
+  .add-btn::after{
+    content:'';position:absolute;inset:0;
+    background:rgba(255,255,255,0);
+    transition:.2s;
+  }
+
+  .add-btn:hover::after{background:rgba(255,255,255,0.15);}
+  .add-btn:active{transform:scale(.97);}
+
+  .add-btn.added{
+    background:#3a7a4a;
+    color:#f0ece0;
+    letter-spacing:1px;
+  }
+
+  /* WISHLIST BTN */
+  .wish-btn{
+    width:42px;height:42px;
+    background:rgba(240,236,224,0.06);
+    border:0.5px solid rgba(240,236,224,0.15);
+    border-radius:3px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .25s;flex-shrink:0;
+    font-size:14px;color:rgba(240,236,224,0.5);
+  }
+
+  .wish-btn:hover{
+    background:rgba(201,162,39,0.15);
+    border-color:#c9a227;color:#c9a227;
+  }
+
+  .wish-btn.loved{color:#e05555;border-color:rgba(224,85,85,0.4);}
+
+  /* COUNT BADGE */
+  .count-bar{
+    display:flex;align-items:center;gap:16px;
+    margin-bottom:32px;
+  }
+
+  .count-text{
+    font-size:12px;color:rgba(240,236,224,0.3);
+    letter-spacing:2px;
+  }
+
+  .count-line{
+    flex:1;height:.5px;background:rgba(240,236,224,0.08);
+  }
+
+  /* CART INDICATOR */
+  .cart-pill{
+    position:fixed;bottom:32px;right:32px;z-index:100;
+    background:#c9a227;
+    border-radius:100px;
+    padding:14px 24px;
+    display:flex;align-items:center;gap:10px;
+    color:#080c0a;
+    font-family:'DM Sans',sans-serif;
+    font-size:13px;font-weight:500;
+    letter-spacing:1px;
+    box-shadow:0 8px 32px rgba(201,162,39,0.35);
+    opacity:0;transform:translateY(20px);
+    transition:all .4s cubic-bezier(.25,.46,.45,.94);
+    pointer-events:none;
+    cursor:pointer;
+  }
+
+  .cart-pill.visible{opacity:1;transform:translateY(0);pointer-events:auto;}
+  .cart-pill span{font-weight:700;}
+
+  /* HERO ACCENT */
+  .hero-accent{
+    position:fixed;top:-200px;right:-200px;
+    width:600px;height:600px;
+    background:radial-gradient(circle, rgba(201,162,39,0.06) 0%, transparent 70%);
+    border-radius:50%;z-index:1;pointer-events:none;
+  }
 </style>
 </head>
-
 <body>
 
-<!-- =========================
-     HERO
-========================= -->
+<div class="bg-layer"></div>
+<div class="noise"></div>
+<div class="hero-accent"></div>
 
-<section class="hero">
+<section id="store">
 
-    <div class="hero-content">
+  <header class="store-header">
+    <div>
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Expedition Series 2025</span>
+      </div>
+      <h1 class="main-title">
+        EQUIPO<br>
+        PARA<br>
+        <em>AVENTURAS</em><br>
+        REALES
+      </h1>
+      <p class="subtitle">
+        Equipamiento premium para exploradores, campistas y aventureros que no aceptan compromisos.
+      </p>
+    </div>
 
-        <h1>Outdoor Comp</h1>
-
-        <p>Where’s your next adventure?</p>
-
-        <button onclick="scrollToCatalog()">
-            Explorar equipo
+    <div class="filter-panel">
+      <span class="filter-label">Filtrar por</span>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">
+          <span class="filter-dot"></span>Todo el equipo
         </button>
-
+        <button class="filter-btn" data-filter="exploracion">
+          <span class="filter-dot"></span>Exploración
+        </button>
+        <button class="filter-btn" data-filter="supervivencia">
+          <span class="filter-dot"></span>Supervivencia
+        </button>
+        <button class="filter-btn" data-filter="comunicacion">
+          <span class="filter-dot"></span>Comunicación
+        </button>
+      </div>
     </div>
+  </header>
+
+  <div class="count-bar">
+    <span class="count-text" id="count-text">3 PRODUCTOS</span>
+    <div class="count-line"></div>
+  </div>
+
+  <div id="product-grid">
+
+    <div class="product-card" data-category="exploracion">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=1200&auto=format&fit=crop"
+        alt="Botas Trekking Pro">
+      <div class="card-overlay"></div>
+      <div class="cat-tag">Exploración</div>
+      <div class="card-content">
+        <h2 class="card-name">Botas Trekking Pro</h2>
+        <p class="card-desc">Máxima resistencia para rutas extremas. Membrana impermeable Gore-Tex y suela Vibram.</p>
+        <div class="card-bottom">
+          <span class="card-price">$245.000</span>
+          <div style="display:flex;gap:8px;flex:1">
+            <button class="add-btn" onclick="addToCart(this, event)">Añadir</button>
+            <button class="wish-btn" onclick="toggleWish(this, event)" title="Guardar">♡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="supervivencia">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=1200&auto=format&fit=crop"
+        alt="Navaja Multi-Tool">
+      <div class="card-overlay"></div>
+      <div class="cat-tag">Supervivencia</div>
+      <div class="card-content">
+        <h2 class="card-name">Navaja Multi-Tool</h2>
+        <p class="card-desc">Herramienta táctica compacta con 18 funciones. Acero inoxidable de alta resistencia.</p>
+        <div class="card-bottom">
+          <span class="card-price">$95.000</span>
+          <div style="display:flex;gap:8px;flex:1">
+            <button class="add-btn" onclick="addToCart(this, event)">Añadir</button>
+            <button class="wish-btn" onclick="toggleWish(this, event)" title="Guardar">♡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="comunicacion">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1557318041-1ce374d55ebf?q=80&w=1200&auto=format&fit=crop"
+        alt="Radio Outdoor X">
+      <div class="card-overlay"></div>
+      <div class="cat-tag">Comunicación</div>
+      <div class="card-content">
+        <h2 class="card-name">Radio Outdoor X</h2>
+        <p class="card-desc">Comunicación de largo alcance hasta 50km. Resistente al agua IP67 y batería de 72h.</p>
+        <div class="card-bottom">
+          <span class="card-price">$180.000</span>
+          <div style="display:flex;gap:8px;flex:1">
+            <button class="add-btn" onclick="addToCart(this, event)">Añadir</button>
+            <button class="wish-btn" onclick="toggleWish(this, event)" title="Guardar">♡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="exploracion">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=1200&auto=format&fit=crop"
+        alt="Mochila Alpina 65L">
+      <div class="card-overlay"></div>
+      <div class="cat-tag">Exploración</div>
+      <div class="card-content">
+        <h2 class="card-name">Mochila Alpina 65L</h2>
+        <p class="card-desc">Sistema de carga adaptable para expediciones de múltiples días. Tejido ultraligero.</p>
+        <div class="card-bottom">
+          <span class="card-price">$320.000</span>
+          <div style="display:flex;gap:8px;flex:1">
+            <button class="add-btn" onclick="addToCart(this, event)">Añadir</button>
+            <button class="wish-btn" onclick="toggleWish(this, event)" title="Guardar">♡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="supervivencia">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1200&auto=format&fit=crop"
+        alt="Carpa Base Camp">
+      <div class="card-overlay"></div>
+      <div class="cat-tag">Supervivencia</div>
+      <div class="card-content">
+        <h2 class="card-name">Carpa Base Camp</h2>
+        <p class="card-desc">Doble capa resistente a vientos de hasta 120 km/h. Montaje en menos de 3 minutos.</p>
+        <div class="card-bottom">
+          <span class="card-price">$480.000</span>
+          <div style="display:flex;gap:8px;flex:1">
+            <button class="add-btn" onclick="addToCart(this, event)">Añadir</button>
+            <button class="wish-btn" onclick="toggleWish(this, event)" title="Guardar">♡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="comunicacion">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop"
+        alt="GPS Expedición">
+      <div class="card-overlay"></div>
+      <div class="cat-tag">Comunicación</div>
+      <div class="card-content">
+        <h2 class="card-name">GPS Expedición</h2>
+        <p class="card-desc">Navegación satelital precisa sin señal celular. Mapas topográficos incluidos para 30 países.</p>
+        <div class="card-bottom">
+          <span class="card-price">$650.000</span>
+          <div style="display:flex;gap:8px;flex:1">
+            <button class="add-btn" onclick="addToCart(this, event)">Añadir</button>
+            <button class="wish-btn" onclick="toggleWish(this, event)" title="Guardar">♡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 </section>
 
-<!-- =========================
-     BANNER
-========================= -->
-
-<section class="adventure-banner">
-
-    <div class="banner-box">
-
-        <div class="banner-content">
-
-            <h2>Conquista nuevos caminos</h2>
-
-            <p>
-                Desde montañas extremas hasta expediciones outdoor,
-                encuentra el equipo ideal para vivir experiencias reales.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =========================
-     CATALOGO
-========================= -->
-
-<section id="productos">
-
-    <div class="catalog-header">
-
-        <div>
-
-            <span>OUTDOOR SERIES</span>
-
-            <h2>Catálogo de aventura</h2>
-
-            <p>
-                Equipo premium diseñado para exploradores modernos.
-            </p>
-
-        </div>
-
-        <div class="filters">
-
-            <button class="filter-btn active" data-filter="all">
-                Todo
-            </button>
-
-            <button class="filter-btn" data-filter="exploracion">
-                Exploración
-            </button>
-
-            <button class="filter-btn" data-filter="supervivencia">
-                Supervivencia
-            </button>
-
-            <button class="filter-btn" data-filter="comunicacion">
-                Comunicación
-            </button>
-
-        </div>
-
-    </div>
-
-    <!-- PRODUCTOS -->
-
-    <div id="product-grid">
-
-        <!-- PRODUCTO -->
-
-        <div class="product-card" data-category="exploracion">
-
-            <div class="tag">⛰️ EXPLORACIÓN</div>
-
-            <img src="https://images.unsplash.com/photo-1520639889313-7272175b1c39?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="product-info">
-
-                <h3>Botas Trekking Pro</h3>
-
-                <p>
-                    Resistentes para montaña y senderismo extremo.
-                </p>
-
-                <span class="price">$245.000</span>
-
-                <button class="add-btn">
-                    Añadir al equipaje
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- PRODUCTO -->
-
-        <div class="product-card" data-category="supervivencia">
-
-            <div class="tag">🔥 SUPERVIVENCIA</div>
-
-            <img src="https://images.unsplash.com/photo-1594145070104-51785532298c?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="product-info">
-
-                <h3>Navaja Multi-Tool</h3>
-
-                <p>
-                    Herramienta táctica para camping y emergencias.
-                </p>
-
-                <span class="price">$95.000</span>
-
-                <button class="add-btn">
-                    Añadir al equipaje
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- PRODUCTO -->
-
-        <div class="product-card" data-category="comunicacion">
-
-            <div class="tag">📡 COMUNICACIÓN</div>
-
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="product-info">
-
-                <h3>Radio Outdoor X</h3>
-
-                <p>
-                    Comunicación de largo alcance para expediciones.
-                </p>
-
-                <span class="price">$180.000</span>
-
-                <button class="add-btn">
-                    Añadir al equipaje
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+<div class="cart-pill" id="cart-pill">
+  🎒 Equipaje: <span id="cart-count">0</span> ítem<span id="cart-s"></span>
+</div>
 
 <script>
+  let cartCount = 0;
 
-/* =========================
-   SCROLL HERO
-========================= */
+  function addToCart(btn, e){
+    e.stopPropagation();
+    if(btn.classList.contains('added')) return;
+    btn.classList.add('added');
+    btn.textContent = '✓ Agregado';
+    cartCount++;
+    const pill = document.getElementById('cart-pill');
+    document.getElementById('cart-count').textContent = cartCount;
+    document.getElementById('cart-s').textContent = cartCount > 1 ? 's' : '';
+    pill.classList.add('visible');
 
-function scrollToCatalog(){
+    setTimeout(()=>{
+      btn.classList.remove('added');
+      btn.textContent = 'Añadir';
+    }, 2500);
+  }
 
-    document.getElementById("productos")
-    .scrollIntoView({
-        behavior:"smooth"
+  function toggleWish(btn, e){
+    e.stopPropagation();
+    btn.classList.toggle('loved');
+    btn.textContent = btn.classList.contains('loved') ? '♥' : '♡';
+  }
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.product-card');
+  const countText = document.getElementById('count-text');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', ()=>{
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      let visible = 0;
+      cards.forEach(card => {
+        const show = f === 'all' || card.dataset.category === f;
+        card.classList.toggle('hidden', !show);
+        if(show) visible++;
+      });
+      countText.textContent = visible + (visible === 1 ? ' PRODUCTO' : ' PRODUCTOS');
     });
-
-}
-
-/* =========================
-   BOTONES PRODUCTOS
-========================= */
-
-const addBtns = document.querySelectorAll(".add-btn");
-
-addBtns.forEach(btn => {
-
-    btn.addEventListener("click", () => {
-
-        btn.innerHTML = "✔ Agregado";
-
-        btn.style.background = "#4ade80";
-
-        setTimeout(() => {
-
-            btn.innerHTML = "Añadir al equipaje";
-
-            btn.style.background =
-            "linear-gradient(135deg,#d4af37,#f5d76e)";
-
-        },2000);
-
-    });
-
-});
-
-/* =========================
-   FILTROS
-========================= */
-
-const filterBtns = document.querySelectorAll(".filter-btn");
-const products = document.querySelectorAll(".product-card");
-
-filterBtns.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        filterBtns.forEach(btn => {
-
-            btn.classList.remove("active");
-
-        });
-
-        button.classList.add("active");
-
-        const filter = button.dataset.filter;
-
-        products.forEach(product => {
-
-            if(filter === "all"){
-
-                product.style.display = "block";
-
-            }else{
-
-                if(product.dataset.category === filter){
-
-                    product.style.display = "block";
-
-                }else{
-
-                    product.style.display = "none";
-
-                }
-
-            }
-
-        });
-
-    });
-
-});
-
+  });
 </script>
 
 </body>
 </html>
+
